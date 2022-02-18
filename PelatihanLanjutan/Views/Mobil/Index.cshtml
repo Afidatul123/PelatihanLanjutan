@@ -1,21 +1,21 @@
-﻿@model Mobil[];
+﻿
 
 <h1>Ini Controller Mobil</h1>
 
 <hr />
 
-<h1>@ViewBag.namaSaya</h1>
+@*<h1>@ViewBag.namaSaya</h1>
 <h1>@ViewData["nama"] </h1>
 <h3>@ViewBag.mobils.IDRegistrasi</h3>
 <h3>@ViewBag.mobils.Merk</h3>
 <h3>@ViewBag.mobils.Tipe</h3>
-<h3>@ViewBag.mobils.Varian</h3>
+<h3>@ViewBag.mobils.Varian</h3>*@
 
-@*@for (int x = 1; x<4; x++)
+@for (int x = 1; x<4; x++)
 {
     <h2>IDReg : @Model[x].IDRegistrasi</h2>
     <h2>Tipe : @Model[x].Tipe</h2>
     <h2>Merk : @Model[x].Merk</h2>
     <h2>Varian : @Model[x].Varian</h2>
 
-}*@
+}

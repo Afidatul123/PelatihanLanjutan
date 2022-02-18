@@ -1,0 +1,48 @@
+﻿@model User;
+
+@{
+    Layout = "_LayoutAkun";
+}
+
+<p>Silahkan Daftar</p>
+
+<form asp-action="Daftar" method="post">
+    <div class="input-group mb-3">
+        <input asp-for="Username" class="form-control" placeholder="Username">
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-user"></span>
+            </div>
+        </div>
+    </div>
+    <div class="input-group mb-3">
+        <input asp-for="Password" class="form-control" placeholder="Password">
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+            </div>
+        </div>
+    </div>
+    <div class="input-group mb-3">
+        <input asp-for="Name" class="form-control" placeholder="Name">
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+            </div>
+        </div>
+    </div>
+    <div class="input-group mb-3">
+        <input asp-for="Email" class="form-control" placeholder="Email">
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+            </div>
+        </div>
+    </div>
+
+    <input type="submit" value="Daftar Sekarang" />
+</form>
+
+<a asp-action="Masuk"> Udah Punya Akun Cuy</a>
+
+      

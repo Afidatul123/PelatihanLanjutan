@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PelatihanLanjutan.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +25,16 @@ namespace PelatihanLanjutan
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDbContext>(o =>
+            {
+                o.UseMySQL(Configuration.GetConnectionString("mysql"));
+            });
+
+            services.AddAuthentication("CookieAuth")
+                .AddCookie("CookieAuth", options =>
+                {
+                    options.LoginPath = "/Akun/Masuk";
+                });
             services.AddControllersWithViews();
         }
 
@@ -43,6 +55,7 @@ namespace PelatihanLanjutan
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
@@ -50,7 +63,7 @@ namespace PelatihanLanjutan
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Mobil}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

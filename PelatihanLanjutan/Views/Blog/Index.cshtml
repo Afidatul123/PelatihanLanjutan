@@ -1,0 +1,8 @@
+﻿@model BlogDashBoard;
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+
+@await Html.PartialAsync("Partial/ListBlog.cshtml")
+@await Html.PartialAsync("Partial/ListUser.cshtml")

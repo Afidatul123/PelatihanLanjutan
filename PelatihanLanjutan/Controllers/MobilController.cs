@@ -12,7 +12,7 @@ namespace PelatihanLanjutan.Controllers
         public IActionResult Index()
         {
             //cara deklarasi
-            //var mobils = new List<Mobil>();
+            var mobils = new List<Mobil>();
 
             //IEnumerable<Mobil> mobils2 = new List<Mobil>();
             //List<Mobil> mobils3 = new List<Mobil>();
@@ -50,7 +50,12 @@ namespace PelatihanLanjutan.Controllers
             //var cariMobil = banyakMobil.Where(r => r.Tipe == "Sedan");
             
 
-            ViewBag.mobils = banyakMobil.Where(r => r.Merk == "Honda").FirstOrDefault();
+            //ViewBag.mobils = banyakMobil.Where(r => r.Merk == "Honda").FirstOrDefault();
+            var cariMobil = banyakMobil.Where(x => x.Tipe == "Sedan");
+            var pertama = banyakMobil.Where(x => x.Merk == "Honda").FirstOrDefault();
+            var tampil = banyakMobil.Where(x => x.Tipe == "Sedan" && x.Merk == "Honda");
+            var tampil2 = banyakMobil.Where(x => x.Merk == "Honda" && x.Varian == "Grey").FirstOrDefault();
+            var tampil3 = banyakMobil.Where(x => x.Merk == "Toyota");
 
             return View(banyakMobil);
         }

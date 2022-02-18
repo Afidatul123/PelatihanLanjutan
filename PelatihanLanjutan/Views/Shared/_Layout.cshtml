@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using PelatihanLanjutan.Helper
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -11,7 +13,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PelatihanLanjutan</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Go-Blogs</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -22,9 +24,32 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Mobil" asp-action="Index">Mobil</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Index">Tampil Data</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Create">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Akun" asp-action="Daftar">Sign In</a>
+                        </li>
                     </ul>
+                </div>
+                <div>
+                    @{
+                        string cek = User.GetUsername();
+                        if (cek != null)
+                        {
+                            @User.GetUsername()
+                            <a asp-action="Logout" asp-controller="Akun" style="color:red" class="bi bi-box-arrow-right"
+                               onclick="if (!confirm('Yakin Untuk Keluar?')) { return false; }">Keluar</a>
+                        }
+                    }
                 </div>
             </div>
         </nav>
