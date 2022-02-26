@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PelatihanLanjutan.Models;
+using PelatihanLanjutan.Repository.BlogRepository;
+using PelatihanLanjutan.Services.BlogServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +37,9 @@ namespace PelatihanLanjutan
                 {
                     options.LoginPath = "/Akun/Masuk";
                 });
+
+            services.AddScoped<IBlogRepository, BlogRepository>();
+            services.AddScoped<IBlogServices, BlogServices>();
             services.AddControllersWithViews();
         }
 

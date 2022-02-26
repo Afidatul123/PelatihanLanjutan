@@ -63,11 +63,43 @@ namespace PelatihanLanjutan.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> Detail()
+        public async Task<IActionResult> Detail(int id)
         {
-            var data = _context.Tb_Blog.Where(i => i.Id == id).FirstOrDefault();
+            var data = await _context.Tb_Blog.FirstOrDefaultAsync(a => a.Id == id);
+            if(data == null)
+            {
+                return NotFound();
+            }
+            return View(data);
+        }
 
-            return View();
+        public async Task<IActionResult> Edit(int id)
+        {
+            var cari = await _context.Tb_Blog.FirstOrDefaultAsync(x => x.Id == id);
+            if (cari== null)
+            {
+                return NotFound();
+            }
+            return View(cari);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Blog data)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Tb_Blog.Update(data);
+                    await _context.SaveChangesAsync();
+                }
+                catch
+                {
+                    return NotFound();
+                }
+                return RedirectToAction("Index");
+            }
+            return View(data);
         }
     }
 }

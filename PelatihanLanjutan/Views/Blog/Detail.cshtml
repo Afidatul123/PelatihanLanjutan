@@ -1,0 +1,12 @@
+﻿@model Blog
+
+<h1>Details</h1>
+<hr/>
+
+<h4>Title : @Html.DisplayFor(model => model.Title)</h4>
+<h4>Content : @Html.DisplayFor(model => model.Content)</h4>
+<h4>Tanggal : @Html.DisplayFor(model => model.CreateDate)</h4>
+<h4>Status : @Html.DisplayFor(model => model.Status)</h4>
+
+<hr />
+<a asp-action="Index">Back to list</a>
