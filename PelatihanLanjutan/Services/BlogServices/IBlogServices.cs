@@ -10,5 +10,8 @@ namespace PelatihanLanjutan.Services.BlogServices
     {
         Task<List<Blog>> TampilSemuaBlogAsync();
         Task<Blog> TampilBlogIDAsync(int id);
+        Task<bool> BuatBlog(Blog data, string username);
+        Task<bool> HapusBlog(int id);
+        Task<bool> UpdateBlog(int id);
     }
 }

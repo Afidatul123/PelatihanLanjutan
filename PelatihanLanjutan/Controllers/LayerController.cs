@@ -9,7 +9,7 @@ namespace PelatihanLanjutan.Controllers
 {
     public class LayerController : Controller
     {
-        private readonly IBlogServices;
+        //private readonly IBlogServices;
         public IActionResult Index()
         {
             return View();

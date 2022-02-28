@@ -1,4 +1,5 @@
-﻿using PelatihanLanjutan.Models;
+﻿using PelatihanLanjutan.Helper;
+using PelatihanLanjutan.Models;
 using PelatihanLanjutan.Repository.BlogRepository;
 using System;
 using System.Collections.Generic;
@@ -15,14 +16,30 @@ namespace PelatihanLanjutan.Services.BlogServices
             _blogRepo = blogRepo;
         }
 
+        public async Task<bool> BuatBlog(Blog data, string username)
+        {
+            //data.Id = BuatPrimary.buatPrimary();
+            var cariUser = await _blogRepo.cariUserByUsernameAsync(username);
+            data.User = cariUser;
+
+            return await _blogRepo.BuatBlogAsync(data);
+        }
+
+        public async Task<bool> HapusBlog(int id)
+        {
+            var cari = await _blogRepo.TampilBlogIDAsync(id);
+            await _blogRepo.HapusBlogAsync(cari);
+            return true;
+        }
+
         public async Task<Blog> TampilBlogIDAsync(int id)
         {
             return await _blogRepo.TampilBlogIDAsync(id);
         }
 
-        public Task<List<Blog>> TampilSemuaBlogAsync()
+        public async Task<List<Blog>> TampilSemuaBlogAsync()
         {
-            throw new NotImplementedException();
+            return await _blogRepo.TampilSemuaBlogAsync();
         }
 
         public async Task<List<Blog>> TampilSemuaData()
@@ -30,5 +47,20 @@ namespace PelatihanLanjutan.Services.BlogServices
             return await _blogRepo.TampilSemuaBlogAsync();
         }
 
+
+        public async Task<bool> UpdateBlog(Blog data)
+        {
+            var cari = await _blogRepo.TampilBlogIDAsync(data.Id);
+            cari.Title = data.Title;
+            cari.Content = data.Content;
+            cari.Status = data.Status;
+
+            return await _blogRepo.UpdateBlogAsync(cari);
+        }
+
+        public Task<bool> UpdateBlog(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
